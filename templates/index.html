@@ -11,12 +11,12 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- Lokale taste-Stufe (design_tokens.py): markengerechte Palette + Font-Pairing, lädt NACH
        style.css und überschreibt sie. Wird pro Seite erzeugt; fehlt sie, greift nur --accent. -->
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
-  <style>:root{ --accent: {{ c.akzent }}; }</style>
+  <style>:root{ --accent-brand: {{ c.akzent }}; }</style>
 </head>
 <body>
   <header class="nav">
@@ -75,7 +75,7 @@
             <span class="hr-result-val" id="hr-result">—</span>
           </div>
           <a class="btn hr-cta" href="#kontakt">Genaues Angebot anfragen</a>
-          <p class="hr-note">{% if c.rechner.hinweis %}{{ c.rechner.hinweis }}{% else %}Grobe Orientierung — Ihr genaues Angebot ist kostenlos.{% endif %}</p>
+          <p class="hr-note">{% if c.rechner.hinweis %}{{ c.rechner.hinweis }}{% else %}Grobe Orientierung. Ihr genaues Angebot ist kostenlos.{% endif %}</p>
           {{ c.rechner|json_script:"rechner-data" }}
         </aside>
       </div>
@@ -86,7 +86,7 @@
     <section id="leistungen" class="section">
       <div class="wrap">
         <h2 class="section-t">Was wir für Sie tun</h2>
-        <p class="section-lead">Klare Leistungen, sauber ausgeführt — vom ersten Gespräch bis zur Abnahme.</p>
+        <p class="section-lead">Klare Leistungen, sauber ausgeführt: vom ersten Gespräch bis zur Abnahme.</p>
         <div class="grid">
           {% for s in c.leistungen %}
           <article class="card">
@@ -174,7 +174,7 @@
       <div class="wrap contact">
         <div class="contact-info">
           <h2 class="section-t">{{ c.cta_text }}</h2>
-          <p class="section-lead">Wir melden uns kurzfristig zurück — versprochen.</p>
+          <p class="section-lead">Wir melden uns kurzfristig zurück. Versprochen.</p>
           <ul class="contact-list">
             {% if c.telefon %}<li><span>Telefon</span><a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></li>{% endif %}
             {% if c.whatsapp %}<li><span>WhatsApp</span><a href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">Nachricht senden</a></li>{% endif %}
@@ -228,11 +228,13 @@
     </div>
   </footer>
 
-  <!-- Mobiler Sticky-Kontaktbalken -->
+  <!-- Mobiler Sticky-Kontaktbalken (nur wenn Kontaktdaten vorhanden) -->
+  {% if c.telefon or c.whatsapp %}
   <div class="mobilebar">
     {% if c.telefon %}<a href="tel:{{ c.telefon }}">☎ Anrufen</a>{% endif %}
     {% if c.whatsapp %}<a class="mb-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}
   </div>
+  {% endif %}
 
   <script src="{% static 'js/kostenrechner.js' %}" defer></script>
   <script>

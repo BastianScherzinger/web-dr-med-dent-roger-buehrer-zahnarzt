@@ -1,16 +1,29 @@
-/* tokens.css — LOKALE taste-Stufe (design_tokens.py), 0 Claude-Tokens.
-   Lädt NACH style.css und überschreibt Palette + Fonts markengerecht. */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+/* tokens.css — taste: klinisches Teal, Zahnarztpraxis Dr. Bührer.
+   Lädt NACH style.css. Fonts via Template-<link> (kein @import nötig). */
 :root{
-  --accent:#e6bcbc;
-  --accent-dark:#b6afaf;
-  --bg:#f9f9f9;
+  --accent:#0C5B6D;
+  --accent-dark:#0A4B5C;
+  --bg:#f7f9fa;
   --surface:#ffffff;
-  --ink:#1c1c1c;
-  --ink-soft:#616161;
-  --line:#e6e6e6;
+  --ink:#111A20;
+  --ink-soft:#4A6270;
+  --line:#DDE4E8;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(12,30,40,.04), 0 8px 24px -12px rgba(12,30,40,.14);
+  --shadow-lg:0 2px 4px rgba(12,30,40,.05), 0 24px 48px -20px rgba(12,30,40,.22);
+  --maxw:1120px;
 }
 body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
-h1,h2,h3,.brand,.section-t,.team-t,.band-t,.hr-title,.hr-result-val{font-family:"Poppins","Iowan Old Style",Georgia,serif}
-.btn{background:var(--accent)}
-.btn:hover{background:var(--accent-dark)}
+h1,h2,h3,.brand,.section-t,.team-t,.band-t,.hr-title,.hr-result-val{
+  font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif
+}
+.btn{background:var(--accent);color:#fff}
+.btn:hover{background:var(--accent-dark);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);box-shadow:none}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:transparent}
+.btn-on-dark{color:#fff;border-color:rgba(255,255,255,.45);background:transparent}
+.btn-on-dark:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:#25d366;color:#0b3d2c}
+.btn-wa:hover{background:#1fb957;color:#06301f}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{color:var(--accent)}
